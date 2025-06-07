@@ -31,26 +31,33 @@ def force_delete_directory(path: Path) -> bool:
     except Exception:
         return False
 
-def clean_workspace_storage() -> dict:
+def clean_workspace_storage(app: str = "vscode", portable_root: str = None) -> dict:
     """
     Cleans the workspace storage directory after creating a backup.
     
-    This function:
-    1. Gets the workspace storage path
-    2. Creates a zip backup of all files in the directory
-    3. Deletes all files in the directory
+    Args:
+        app (str): The application name ('vscode', 'cursor', or 'windsurf')
+        portable_root (str, optional): The root directory for portable installations (used only for 'cursor')
     
     Returns:
         dict: A dictionary containing operation results
         {
             'backup_path': str,
-            'deleted_files_count': int
+            'deleted_files_count': int,
+            'app': str,
+            'portable': bool
         }
     """
-    workspace_path = get_workspace_storage_path()
+    workspace_path = get_workspace_storage_path(app, portable_root)
     
     if not os.path.exists(workspace_path):
-        raise FileNotFoundError(f"Workspace storage directory not found at: {workspace_path}")
+        print(f"Workspace storage directory not found at: {workspace_path}")
+        return {
+            'backup_path': None,
+            'deleted_files_count': 0,
+            'app': app,
+            'portable': portable_root is not None and app == 'cursor'
+        }
     
     # Convert to Path object for better path handling
     workspace_path = Path(workspace_path)
