@@ -1,131 +1,120 @@
-# Free AugmentCode
+# Free AugmentCode - Multi-IDE Edition
 
-[English](#english) | [中文](#chinese)
+> **Note**: This project is an enhanced version of the original [Free AugmentCode](https://github.com/vber/free-augmentcode) by [vber](https://github.com/vber).
+>
+> **Enhancements by [HamaBTW](https://github.com/HamaBTW)**:
+> - Added support for multiple IDEs (VS Code, Cursor, Windsurf)
+> - Created an interactive menu system
+> - Improved error handling and user feedback
+> - Added portable Cursor support
 
-# <a name="chinese"></a>中文版
+A powerful tool for managing and cleaning AugmentCode-related data across multiple IDEs. It allows you to log in with different accounts on the same computer without triggering account locks.
 
-Free AugmentCode 是一个用于清理AugmentCode相关数据的工具，可以在同一台电脑上无限次登录不同的账号，避免账号被锁定。
+## 🌟 Features
 
-## 功能特性
+### Multi-IDE Support
+- **VS Code** - Full support for all versions
+- **Cursor** - Both installed and portable versions
+- **Windsurf** - Complete compatibility
 
-- 📝 修改Telemetry ID
-  - 重置设备 ID 和机器 ID
-  - 自动备份原始数据
-  - 生成新的随机 ID
+### 🔄 Telemetry Management
+- **ID Regeneration**
+  - Reset device and machine IDs
+  - Generate new random identifiers
+  - Automatic backup of original IDs
+  
+### 🗃️ Database Maintenance
+- **Smart Cleanup**
+  - Remove AugmentCode-related entries
+  - Clean authentication tokens
+  - Automatic database backup
+  - Cross-platform compatibility
 
-- 🗃️ 数据库清理
-  - 清理 SQLite 数据库中的特定记录
-  - 自动备份数据库文件
-  - 删除包含 'augment' 关键字的记录
+### 📁 Workspace Management
+- **Storage Cleanup**
+  - Remove cached workspace data
+  - Create zip backups before deletion
+  - Handle read-only files safely
 
-- 💾 工作区存储管理
-  - 清理工作区存储文件
-  - 自动备份工作区数据
+## 🚀 Getting Started
 
-## 安装说明
+### Prerequisites
+- Python 3.10 or higher
+- One of the supported IDEs installed
 
-1. 确保你的系统已安装 Python 3.10及以上
-2. 克隆此仓库到本地：
-   ```bash
-   git clone https://github.com/yourusername/free-augmentcode.git
-   cd free-augmentcode
-   ```
-
-## 使用方法
-
-1. 退出AugmentCode插件
-2. 完全退出 VS Code
-3. 执行脚本：
-
+### Installation
 ```bash
-python index.py
+git clone https://github.com/yourusername/free-augmentcode.git
+cd free-augmentcode
+pip install -r requirements.txt
 ```
 
-4. 重新启动 VS Code
-5. AugmentCode 插件中使用新的邮箱进行登录
+## 💻 Usage
 
-## 项目结构
-
-```
-free-augmentcode/
-├── index.py              # 主程序入口
-├── augutils/             # 工具类目录
-│   ├── json_modifier.py      # JSON 文件修改工具
-│   ├── sqlite_modifier.py    # SQLite 数据库修改工具
-│   └── workspace_cleaner.py  # 工作区清理工具
-└── utils/                # 通用工具目录
-    └── paths.py             # 路径管理工具
-```
-
-## 贡献
-
-欢迎提交 Issue 和 Pull Request 来帮助改进这个项目。
-
-## 许可证
-
-此项目采用 MIT 许可证。详见 [LICENSE](LICENSE) 文件。
-
----
-
-# <a name="english"></a>English Version
-
-Free AugmentCode is a tool for cleaning AugmentCode-related data, allowing unlimited logins with different accounts on the same computer while avoiding account lockouts.
-
-## Features
-
-- 📝 Telemetry ID Modification
-  - Reset device ID and machine ID
-  - Automatic backup of original data
-  - Generate new random IDs
-
-- 🗃️ Database Cleanup
-  - Clean specific records in SQLite database
-  - Automatic database file backup
-  - Remove records containing 'augment' keyword
-
-- 💾 Workspace Storage Management
-  - Clean workspace storage files
-  - Automatic workspace data backup
-
-## Installation
-
-1. Ensure Python 3.10 or above is installed on your system
-2. Clone this repository:
-   ```bash
-   git clone https://github.com/yourusername/free-augmentcode.git
-   cd free-augmentcode
-   ```
-
-## Usage
-
-1. Exit the AugmentCode plugin
-2. Completely close VS Code
-3. Run the script:
-
+### Basic Commands
 ```bash
-python index.py
+# For VS Code
+python index.py --app vscode
+
+# For Cursor (installed)
+python index.py --app cursor
+
+# For Windsurf
+python index.py --app windsurf
 ```
 
-4. Restart VS Code
-5. Log in to the AugmentCode plugin with a new email
+### Advanced Options
+```bash
+# Portable Cursor installation
+python index.py --app cursor --portable-root "D:\\path\\to\\cursor"
 
-## Project Structure
+# Dry run (preview changes)
+python index.py --app vscode --dry-run
 
-```
-free-augmentcode/
-├── index.py              # Main program entry
-├── augutils/             # Utility classes directory
-│   ├── json_modifier.py      # JSON file modification tool
-│   ├── sqlite_modifier.py    # SQLite database modification tool
-│   └── workspace_cleaner.py  # Workspace cleanup tool
-└── utils/                # Common utilities directory
-    └── paths.py             # Path management tool
+# Show help
+python index.py --help
 ```
 
-## Contributing
+## 🛠️ How It Works
 
-Issues and Pull Requests are welcome to help improve this project.
+1. **Backup Creation**
+   - Creates timestamped backups of all modified files
+   - Stores backups in the same directory as the original files
 
-## License
+2. **ID Regeneration**
+   - Updates telemetry IDs in storage files
+   - Modifies machine ID files
+   - Handles different ID formats across IDEs
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details. 
+3. **Database Cleaning**
+   - Removes AugmentCode-related entries
+   - Cleans authentication tokens
+   - Maintains database integrity
+
+4. **Workspace Cleanup**
+   - Creates zip archive of workspace storage
+   - Safely removes cached data
+   - Handles file permissions correctly
+
+## 📝 Notes
+
+- Always close your IDE before running this tool
+- Backups are created automatically with timestamps
+- The tool will skip non-existent paths gracefully
+- Use `--dry-run` to preview changes before applying them
+
+## 🤝 Credits & Contributing
+
+### Original Work
+- Original project: [vber/free-augmentcode](https://github.com/vber/free-augmentcode)
+- Original author: [vber](https://github.com/vber)
+
+### Enhancements
+- Multi-IDE support and improvements by: [HamaBTW](https://github.com/HamaBTW)
+
+### Contributing
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
